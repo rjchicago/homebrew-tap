@@ -2,7 +2,7 @@ class Termv < Formula
   desc "Terminal Velocity - a high-performance terminal-based game"
   homepage "https://github.com/rjchicago/termv"
   url "https://github.com/rjchicago/termv/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "3cc4069a35e6e3f2d6ca0528850c2280d0bd65105440104526697db85acea648"
+  sha256 "593733343daf5cd25905bb3a9c097c94f44a4037e2f353fbf601299f770783a0"
   license "MIT"
 
   livecheck do
