@@ -5,12 +5,12 @@ class Termv < Formula
   sha256 "3cc4069a35e6e3f2d6ca0528850c2280d0bd65105440104526697db85acea648"
   license "MIT"
 
-  depends_on "ncurses"
-
   livecheck do
     url :stable
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
+
+  depends_on "ncurses"
 
   def install
     system "make", "VERSION=0.1.0"

@@ -29,7 +29,11 @@ jobs:
         formula: [termv]
     steps:
       - uses: actions/checkout@v4
+      - name: Tap locally
+        run: |
+          mkdir -p "$(brew --repository)/Library/Taps/rjchicago/homebrew-tap"
+          cp -r . "$(brew --repository)/Library/Taps/rjchicago/homebrew-tap"
       - name: Install from source
-        run: brew install --build-from-source ./Formula/${{ matrix.formula }}.rb
+        run: brew install --build-from-source rjchicago/tap/${{ matrix.formula }}
       - name: Test formula
-        run: brew test ${{ matrix.formula }}
+        run: brew test rjchicago/tap/${{ matrix.formula }}
