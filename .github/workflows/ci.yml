@@ -1,0 +1,35 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Tap locally
+        run: |
+          mkdir -p "$(brew --repository)/Library/Taps/rjchicago/homebrew-tap"
+          cp -r . "$(brew --repository)/Library/Taps/rjchicago/homebrew-tap"
+
+      - name: Audit formulas
+        run: brew audit --tap rjchicago/tap
+
+      - name: Style check
+        run: brew style rjchicago/tap
+
+  build:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        formula: [termv]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install from source
+        run: brew install --build-from-source ./Formula/${{ matrix.formula }}.rb
+      - name: Test formula
+        run: brew test ${{ matrix.formula }}
