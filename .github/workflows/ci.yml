@@ -9,7 +9,7 @@ jobs:
   lint:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Tap locally
         run: |
@@ -28,7 +28,7 @@ jobs:
       matrix:
         formula: [termv]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Tap locally
         run: |
           mkdir -p "$(brew --repository)/Library/Taps/rjchicago/homebrew-tap"
